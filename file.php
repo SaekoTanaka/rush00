@@ -26,6 +26,7 @@ function save_data($filename, $file_data)
 	if (!file_exists($root . "/private/"))
 		if (mkdir($root . "/private/") === FALSE)
 			return FALSE;
+//	if (file_put_contents($file_path, serialize($file_data), LOCK_EX) === FALSE)
 	if (file_put_contents($file_path, serialize($file_data)) === FALSE)
 		return FALSE;
 	return TRUE;

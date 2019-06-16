@@ -1,16 +1,22 @@
 <?php
 
-function put_basket_item($item)
+include("inventory.php");
+
+function put_basket_item($item, $quantity)
 {
-	$item_id = $item["id"];
-	$item_quantity = $item["quantity"];
+	$name = $item["name"];
+	$image = $item["image"];
+	$price = $quantity * $item["price"];
 echo <<<EOD
-					<div class="item_info">
-							<p class="cost">$$item_quantity</p>
-							<form action="#1" method="post">
-								<input class="delete" type="button" name="delete" value="delete">
-							</form>
-						</div>	
+<div class="item_info">
+	<p>$name</p>
+	<img src="$image" />
+	<p>$quantity</p>
+	<p class="cost">$$price</p>
+	<form action="#1" method="post">
+		<input class="delete" type="button" name="delete" value="delete">
+	</form>
+</div>	
 
 EOD;
 }
@@ -27,10 +33,11 @@ if (array_key_exists("basket", $_SESSION))
 else
 	$basket = array();
 $cost = 0;
-foreach ($basket as $item)
+foreach ($basket as $basket_item)
 {
-	put_basket_item($item);
-	$cost += $item["id"] * $item["quantity"];
+	$item = inventory_get_item($basket_item["id"]);
+	put_basket_item($item, $basket_item["quantity"]);
+	$cost += $basket_item["quantity"] * $item["price"];
 }
 put_basket_price($cost);
 
