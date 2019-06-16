@@ -40,4 +40,24 @@ function auth($login, $passwd)
 	return ($hash == $account["passwd"]);
 }
 
+function modify_account($username, $modifier)
+{
+	$login = strtolower($username);
+	if (!load_data("accounts.txt", $accounts))
+		return ["error"=>"failed to open account information"];
+	foreach ($accounts as &$account)
+	{
+		if (!array_key_exists("login", $account))
+			continue;
+		if (strtolower($account["login"]) == $login)
+		{
+			$modifier->modify($account);
+			if (save_data("accounts.txt", $accounts))
+				return TRUE;
+			return ["error"=>"failed to save account information"];
+		}
+	}
+	return ["error"=>"account does not exist"];
+}
+
 ?>

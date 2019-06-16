@@ -29,7 +29,7 @@ if (empty($_POST["passwd"]))
 	exit("ERROR: Password cannot be empty.\n");
 create_user($accounts, $new_user, $_POST["passwd"]);
 save_data("accounts.txt", $accounts);
-header("Location:index.html");
+header("Location:main.html");
 echo "OK\n";
 
 ?>

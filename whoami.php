@@ -1,5 +1,7 @@
 <?php
 
+include("account.php");
+
 function whoami()
 {
 	if (!array_key_exists("loggued_on_user", $_SESSION))

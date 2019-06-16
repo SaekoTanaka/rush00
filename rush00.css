@@ -48,14 +48,12 @@ ul {
 		border-image-slice: 1;
 		margin: 20px auto;
 		width: 600px;
-		height: 500px;
 		background-color: white;
 }
 
 .item_img {
 	position: relative;
 	left: 200px;
-	height: 250px;
 }
 
 .item_info {
@@ -74,18 +72,7 @@ ul {
 }
 .cart {
 	width: 100px;
-	margin-right: 40px;
-
 }
-
-.num {
-	border:  2px, solid;
-	border-color: black;
-	position: relative;
-	left: 100px;
-	bottom: 30px;
-}
-
 .top {
 	
     display: flex;
@@ -163,8 +150,6 @@ ul {
 	  width: 100px;
   }
 
-
-	
   .btn-gradient-flat {
 	display: inline-block;
 	padding: 0.5em 1em;
