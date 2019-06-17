@@ -38,21 +38,21 @@ $inventory =
 		"id"=>2,
 		"name"=>"victim",
 		"image"=>"",
-		"price"=>9999,
+		"price"=>100,
 		"tags"=>["knit"]
 	],
 	[
 		"id"=>3,
 		"name"=>"new era",
 		"image"=>"",
-		"price"=>9999,
+		"price"=>100,
 		"tags"=>["cap"]
 	],
 	[
 		"id"=>4,
 		"name"=>"L&HARMONY",
 		"image"=>"",
-		"price"=>9999,
+		"price"=>150,
 		"tags"=>["cap"]
 	],
 ];

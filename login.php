@@ -19,6 +19,7 @@ if (login())
 		$_SESSION["user_permissions"] = $account["permissions"];
 	else
 		$_SESSION["user_permissions"] = 0;
+		header("Location: main.html");
 	echo "OK".PHP_EOL;
 }
 else

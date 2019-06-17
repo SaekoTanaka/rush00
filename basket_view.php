@@ -17,7 +17,8 @@ function put_basket_item($item, $quantity)
 
 function put_basket_price($price)
 {
-	echo "<p>Total price: " . $price . "</p>";
+	echo "<h1>Total price: " . $price . "</h1>";
+	
 }
 
 session_start();
@@ -27,7 +28,6 @@ if (array_key_exists("basket", $_SESSION))
 else
 	$basket = array();
 // TODO testing only
-$basket = [["id"=>1, "quantity"=>1], ["id"=>4, "quantity"=>42]];
 $cost = 0;
 foreach ($basket as $basket_item)
 {

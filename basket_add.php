@@ -19,7 +19,8 @@ for ($i = 0; $i < count($basket); $i++)
 		if ($item["quantity"] == 0)
 			array_splice($basket, $i, 1);
 		$_SESSION["basket"] = $basket;
-		exit("OK".PHP_EOL);
+		header("Location: basket.php");
+		//exit("OK".PHP_EOL);
 	}
 }
 // TODO verify that id is in stock
