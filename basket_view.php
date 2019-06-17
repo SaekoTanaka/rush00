@@ -1,24 +1,18 @@
 <?php
 
-include("inventory.php");
+include_once("inventory.php");
 
 function put_basket_item($item, $quantity)
 {
 	$name = $item["name"];
 	$image = $item["image"];
 	$price = $quantity * $item["price"];
-echo <<<EOD
-<div class="item_info">
-	<p>$name</p>
-	<img src="$image" />
-	<p>$quantity</p>
-	<p class="cost">$$price</p>
-	<form action="#1" method="post">
-		<input class="delete" type="button" name="delete" value="delete">
-	</form>
-</div>	
-
-EOD;
+	$html = file_get_contents("templates/basket_view_item.html");
+	if ($html == FALSE)
+		return ;
+	$placeholders = ["__NAME__", "__IMAGE__", "__PRICE__", "__QUANTITY__"];
+	$replacements = [$name, $image, $price, $quantity];
+	echo str_replace($placeholders, $replacements, $html);
 }
 
 function put_basket_price($price)
@@ -32,6 +26,8 @@ if (array_key_exists("basket", $_SESSION))
 	$basket = $_SESSION["basket"];
 else
 	$basket = array();
+// TODO testing only
+$basket = [["id"=>1, "quantity"=>1], ["id"=>4, "quantity"=>42]];
 $cost = 0;
 foreach ($basket as $basket_item)
 {

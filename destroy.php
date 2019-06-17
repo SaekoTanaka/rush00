@@ -1,8 +1,8 @@
 <?php
 
-include("whoami.php");
-include("account.php");
-include("permissions.php");
+include_once("whoami.php");
+include_once("account.php");
+include_once("permissions.php");
 
 function destroy_user($user)
 {
@@ -21,6 +21,8 @@ function destroy_user($user)
 	echo "ERROR: Unable to save account information.".PHP_EOL;
 	return FALSE;
 }
+
+session_start();
 
 if (!array_key_exists("rm_login", $_POST))
 	exit("ERROR: Must specify user to delete.".PHP_EOL);

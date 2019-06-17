@@ -1,6 +1,6 @@
 <?php
 
-include("file.php");
+include_once("file.php");
 
 function create_user(&$accounts, $user, $pass)
 {

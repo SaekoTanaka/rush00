@@ -1,6 +1,6 @@
 <?php
 
-include("file.php");
+include_once("file.php");
 
 function inventory_get_item($id)
 {
@@ -8,9 +8,9 @@ function inventory_get_item($id)
 		return FALSE;
 	if (!load_data("inventory.txt", $inventory))
 		return FALSE;
-	foreach($inventory as $item)
-		if ($item["id"] == $id)
-			return $item;
+	foreach($inventory as $product)
+		if ($product["id"] == $id)
+			return $product;
 	return FALSE;
 }
 
@@ -37,6 +37,33 @@ function inventory_add($name, $image, $price, $tags = null)
 	return save_data("inventory.txt", $inventory);
 }
 
+function inventory_modify($id, $name, $image, $price, $tags = null)
+{
+	if (!is_numeric($id))
+		return false;
+	if (!load_data("inventory.txt", $inventory))
+		return FALSE;
+	foreach ($inventory as &$product)
+		if ($product["id"] == $id)
+		{
+			if ($name !== null)
+				$product["name"] = $name;
+			if ($image !== null)
+				$product["image"] = $image;
+			if ($price !== null)
+				$product["price"] = $price;
+			if ($tags !== null)
+			{
+				if ($tags)
+					$product["tags"] = preg_split("/\s+/", trim($tags));
+				else
+					$product["tags"] = array();
+			}
+			return save_data("inventory.txt", $inventory);
+		}
+	return FALSE;
+}
+
 function inventory_remove($id)
 {
 	if (!is_numeric($id))
@@ -58,10 +85,10 @@ function inventory_get_tagged($tag)
 	if (!load_data("inventory.txt", $inventory))
 		return FALSE;
 	$tagged_items = array();
-	foreach ($inventory as $item)
-		foreach ($item["tags"] as $item_tag)
-			if (strtolower($item_tag) == $tag)
-				$tagged_items[] = $item;
+	foreach ($inventory as $product)
+		foreach ($product["tags"] as $product_tag)
+			if (strtolower($product_tag) == $tag)
+				$tagged_items[] = $product;
 	return $tagged_items;
 }
 
@@ -83,13 +110,13 @@ function inventory_search($key)
 	if (!load_data("inventory.txt", $inventory))
 		return FALSE;
 	$matching_items = array();
-	foreach ($inventory as $item)
+	foreach ($inventory as $product)
 	{
 		if (
-			name_match($item["name"], $key) or
-			tags_match($item["tags"], $key)
+			name_match($product["name"], $key) or
+			tags_match($product["tags"], $key)
 		)
-			$matching_items[] = $item;
+			$matching_items[] = $product;
 	}
 	return $matching_items;
 }

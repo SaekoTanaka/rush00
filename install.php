@@ -1,7 +1,8 @@
 #!/usr/bin/php
 <?php
 
-include("file.php");
+include_once("file.php");
+include_once("permissions.php");
 
 $accounts =
 [
@@ -10,7 +11,7 @@ $accounts =
 		"passwd"=>"5e02d9c4ccb972a13348423685314389cf35dd26efb95ac18e77de775050e860175980274596cc9baac1701f35d180ec8aa9eaef902ff88066143cf8e61610f2",
 		"salt"=>"4f035302cd31055c",
 		"pepper"=>"71859992f1866128",
-		"permissions"=>1
+		"permissions"=>$PER_MODIFY_USER | $PER_INVENTORY
 	]
 ];
 

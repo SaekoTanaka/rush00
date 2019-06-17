@@ -1,5 +1,6 @@
 <?php
 
 $PER_MODIFY_USER = 1;
+$PER_INVENTORY = 2;
 
 ?>

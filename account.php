@@ -1,6 +1,6 @@
 <?php
 
-include("file.php");
+include_once("file.php");
 
 function get_account($username)
 {

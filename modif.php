@@ -1,6 +1,6 @@
 <?php
 
-include("account.php");
+include_once("account.php");
 
 class PasswordChanger
 {
